@@ -22,5 +22,7 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM
 ## Extra Topics I have solved
 - Circular Linked List
 - Inorder Traversal
+- Preorder Traversal
+- Postorder Traversal
 
   
