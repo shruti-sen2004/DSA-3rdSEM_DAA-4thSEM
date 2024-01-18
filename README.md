@@ -20,11 +20,14 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM
 16. To implement the following operations on **Doubly Linked List** : a) Create b) Insert c) Delete d) Display e) Exit
 
 ## Extra Topics I have solved
+- STACK using Linked List
+- QUEUE using Linked List
 - Circular Linked List
 - Inorder Traversal
 - Preorder Traversal
 - Postorder Traversal
 - To check whether a given binary tree is a Binary search Tree or not.
-- AVL tree 
+- AVL tree
+
 
   
