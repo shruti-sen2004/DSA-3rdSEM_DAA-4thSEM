@@ -25,5 +25,6 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM
 - Preorder Traversal
 - Postorder Traversal
 - To check whether a given binary tree is a Binary search Tree or not.
+- AVL tree 
 
   
