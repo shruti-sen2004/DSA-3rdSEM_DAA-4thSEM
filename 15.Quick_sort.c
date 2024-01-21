@@ -10,8 +10,8 @@ int partition(int arr[],int left,int right)
 {
     int i,j;
     int pivot=arr[left];
-    i=left+1;
-    j=right;
+    i=left;
+    j=right+1;
     do
     {
         while (arr[i] <= pivot)
@@ -21,7 +21,7 @@ int partition(int arr[],int left,int right)
             j--;
 
         if (i < j)
-            swap(&arr[left],&arr[j]);
+            swap(&arr[i],&arr[j]);
     }while(i<j);
 
     swap(&arr[left],&arr[j]);
