@@ -5,31 +5,27 @@ int cqueue_arr[MAX];
 int front = -1;
 int rear = -1;
 
-/*Begin of insert*/
+
 void insert(int item)
 {
-	if((front == 0 && rear == MAX-1) || (front == rear+1))
-	{
+	if((front == 0 && rear == MAX-1) || (front == rear+1)){
 		printf("Queue Overflow \n");
 		return;
 	}
-	if (front == -1)  /*If queue is empty */
-	{
+	if (front == -1){
 		front = 0;
 		rear = 0;
 	}
 	else
 	{
-		if(rear == MAX-1)	/*rear is at last position of queue */
+		if(rear == MAX-1)	
 			rear = 0;
 		else
 			rear = rear+1;
 	}
 	cqueue_arr[rear] = item ;
 }
-/*End of insert*/
 
-/*Begin of del*/
 void del()
 {
 	if (front == -1)
@@ -38,7 +34,7 @@ void del()
 		return ;
 	}
 	printf("Element deleted from queue is : %d\n",cqueue_arr[front]);
-	if(front == rear) /* queue has only one element */
+	if(front == rear) 
 	{
 		front = -1;
 		rear=-1;
@@ -51,9 +47,7 @@ void del()
 			front = front+1;
 	}
 }
-/*End of del() */
 
-/*Begin of display*/
 void display()
 {
 	int front_pos = front,rear_pos = rear;
@@ -85,14 +79,10 @@ void display()
 	}
 	printf("\n");
 }
-/*End of display*/
 
-/*Begin of main*/
-int main()
-{
+int main(){
 	int choice,item;
-	do
-	{
+	do{
 		printf("1.Insert\n");
 		printf("2.Delete\n");
 		printf("3.Display\n");
@@ -101,8 +91,7 @@ int main()
 		printf("Enter your choice : ");
 		scanf("%d",&choice);
 
-		switch(choice)
-		{
+		switch(choice){
 			case 1 :
 				printf("Input the element for insertion in queue : ");
 				scanf("%d", &item);
@@ -124,4 +113,3 @@ int main()
 	
 	return 0;
 }
-/*End of main*/
