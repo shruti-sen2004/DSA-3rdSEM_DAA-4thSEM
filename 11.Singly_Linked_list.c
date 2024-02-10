@@ -1,78 +1,11 @@
 #include<stdio.h>
-#include<conio.h>
-#include<process.h>
+#include <stdlib.h>
  
 struct node
 {
     int data;
     struct node *next;
 }*start=NULL,*q,*t;
- 
-int main()
-{
-    int ch;
-    void insert_beg();
-    void insert_end();
-    int insert_pos();
-    void display();
-    void delete_beg();
-    void delete_end();
-    int delete_pos();
- 
-    while(1)
-    {
-        printf("\n\n---- Singly Linked List(SLL) Menu ----");
-        printf("\n1.Insert\n2.Display\n3.Delete\n4.Exit\n\n");
-        printf("Enter your choice(1-4):");
-        scanf("%d",&ch);
- 
-        switch(ch)
-        {
-            case 1:
-                    printf("\n---- Insert Menu ----");
-                    printf("\n1.Insert at beginning\n2.Insert at end\n3.Insert at specified position\n4.Exit");
-                    printf("\n\nEnter your choice(1-4):");
-                    scanf("%d",&ch);
- 
-                    switch(ch)
-                    {
-                        case 1: insert_beg();
-                                break;
-                        case 2: insert_end();
-                                break;
-                        case 3: insert_pos();
-                                break;
-                        case 4: exit(0);
-                        default: printf("Wrong Choice!!");
-                    }
-                    break;
- 
-            case 2: display();
-                    break;
- 
-            case 3: printf("\n---- Delete Menu ----");
-                    printf("\n1.Delete from beginning\n2.Delete from end\n3.Delete from specified position\n4.Exit");
-                    printf("\n\nEnter your choice(1-4):");
-                    scanf("%d",&ch);
- 
-                    switch(ch)
-                    {
-                        case 1: delete_beg();
-                                break;
-                        case 2: delete_end();
-                                break;
-                        case 3: delete_pos();
-                                break;
-                        case 4: exit(0);
-                        default: printf("Wrong Choice!!");
-                    }
-                    break;
-            case 4: exit(0);
-                    default: printf("Wrong Choice!!");
-        }
-    }
-    return 0;
-}
  
 void insert_beg()
 {
@@ -231,5 +164,30 @@ int delete_pos()
     printf("Deleted element is %d",t->data);
     free(t);
  
+    return 0;
+}
+
+int main()
+{
+    int ch;
+    while(1)
+    {
+        printf("\n\n---- Singly Linked List(SLL) Menu ----");
+        printf("\n1.Insert at begining\n2.Insert at end\n3.Insert at any pos\n4.Delete at Begining\n5.Delete at end\n6.Delete at any pos\n7.Display\n8.Exit\n");
+        printf("Enter your choice(1-8):");
+        scanf("%d",&ch);
+ 
+        switch(ch){
+            case 1: insert_beg(); break;
+            case 2: insert_end(); break;
+            case 3: insert_pos(); break;
+            case 4: delete_beg(); break;
+            case 5: delete_end(); break;
+            case 6: delete_pos(); break;
+            case 7: display(); break;
+            case 8: printf("EXITING...."); exit(1);
+            default: printf("WRONG CHOICE!!");
+        }    
+    }
     return 0;
 }
