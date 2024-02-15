@@ -117,7 +117,7 @@ void insert_pos() {
         } else if (pos > 0 && pos < c) {
                 int i = 1;
                 temp = start;
-                while (temp != NULL && i < pos - 1) { 
+                while (temp != NULL && i < pos) { 
                         temp = temp->next;
                         i++;
                 }
@@ -163,25 +163,35 @@ void delete_end() {
 }
 
 void delete_pos() {
-        int c = count();
-        int pos; printf("Enter position to delete at: "); scanf("%d", &pos);
-        if (pos == 0) {
-                delete_begn();
-        } else if (pos == c) {
-                delete_end();
-        } else if (pos > 0 && pos < c) {
-                int i = 0;
-                temp = start;
-                while (temp != NULL && i < pos) {
-                		prev = temp;
-                        temp = temp->next;
-                    	i++;
-                }
-                printf("Deleted: %d\n", temp->data);
-                prev->next = temp->next;
-                temp->next->prev = prev;
-                free(temp);
-        } else {
-                printf("Invalid postion!\n");
+    int c = count();
+    int pos; 
+    printf("Enter position to delete at: "); 
+    scanf("%d", &pos);
+
+    if (pos == 0) {
+        delete_begn();
+    } else if (pos == c) {
+        delete_end();
+    } else if (pos > 0 && pos < c) {
+        int i = 0;
+        temp = start;
+        while (temp != NULL && i < pos) {
+            prev = temp;
+            temp = temp->next;
+            i++;
         }
+
+        if (temp != NULL) {
+            printf("Deleted: %d\n", temp->data);
+            prev->next = temp->next;
+            if (temp->next != NULL) {
+                temp->next->prev = prev;
+            }
+            free(temp);
+        } else {
+            printf("Invalid position!\n");
+        }
+    } else {
+        printf("Invalid position!\n");
+    }
 }
