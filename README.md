@@ -18,6 +18,7 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM
 13. To sort an array using **Selection Sort**.
 14. To implement the following operations on **Doubly Linked List** : a) Create b) Insert c) Delete d) Display e) Exit
 15. To sort an array using **Quick Sort**.
+16. To implement the following operations on **Doubly Linked List** : a) Create b) Insert c) Delete d) Display e) Exit
 
 ## Extra Topics I have solved
 - STACK using Linked List
