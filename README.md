@@ -1,7 +1,7 @@
-# DSA---3rd-SEM
-This repo consists of code done by me for the subject- DSA in 3rd SEM
+# DSA & DAA
+This repo consists of code done by me for the subject- DSA in 3rd SEM and DAA in 4th SEM
 
-## Questions done till now
+## Questions done in 3rd SEM
 0. Menu Driven operations on Array.
 1. Insert an element into a specific position of an array.
 2. Delete an element from a specific position of an array.
@@ -30,6 +30,7 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM
 - Postorder Traversal
 - To check whether a given binary tree is a Binary search Tree or not.
   
-
+## Questions done in 4th SEM
+1. Finding min and max using divide and conquer.
 
   
