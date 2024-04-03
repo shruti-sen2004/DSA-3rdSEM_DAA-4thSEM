@@ -32,5 +32,6 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM and DAA in
   
 ## Questions done in 4th SEM
 1. Finding min and max using divide and conquer.
+2. Matrix chain multiplication.
 
   
