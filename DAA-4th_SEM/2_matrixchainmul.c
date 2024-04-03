@@ -1,11 +1,13 @@
 #include <stdio.h>
 
 void matrix_chain_multiplication(int arr[], int n) {
-	int i, j, l, k, q;
-	int min_mul[4][4];
+	int i, j, l, k,m, q;
+	printf("ENTER THE SIZE OF THE MATRIX: ");
+	scanf("%d",&m);
+	int min_mul[m+1][m+1];
 	
-	for(i = 1; i < 4; i++) {
-		for(j = 1; j < 4; j++) {
+	for(i = 1; i < m+1; i++) {
+		for(j = 1; j < m+1; j++) {
 			if (i < j)
 				min_mul[i][j] = 9999999;
             else
@@ -29,8 +31,8 @@ void matrix_chain_multiplication(int arr[], int n) {
 		}
 	}
 	
-	for(i = 1; i < 4; i++) {
-		for(j = 1; j < 4; j++) {
+	for(i = 1; i < m+1; i++) {
+		for(j = 1; j < m+1; j++) {
 			printf("%2d ", min_mul[i][j]);
 		}
 		printf("\n");
@@ -38,7 +40,13 @@ void matrix_chain_multiplication(int arr[], int n) {
 }
 
 int main(void) {
-	int arr[] = {2, 3, 4, 2};
-	int n = 4;
-	matrix_chain_multiplication(arr, n);
+	int n;
+	printf("ENTER THE NUMBER OF MATRIX: ");
+	scanf("%d",&n);
+	int arr[n+1];
+	printf("ENTER THE DIMENSIONS OF THE MATRIX: ");
+	for(int i=0; i<=n; i++){
+		scanf("%d",&arr[i]);
+	}
+	matrix_chain_multiplication(arr, n+1);
 }
