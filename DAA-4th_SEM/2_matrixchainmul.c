@@ -2,12 +2,10 @@
 
 void matrix_chain_multiplication(int arr[], int n) {
 	int i, j, l, k,m, q;
-	printf("ENTER THE SIZE OF THE MATRIX: ");
-	scanf("%d",&m);
-	int min_mul[m+1][m+1];
+	int min_mul[n][n];
 	
-	for(i = 1; i < m+1; i++) {
-		for(j = 1; j < m+1; j++) {
+	for(i = 1; i < n; i++) {
+		for(j = 1; j < n; j++) {
 			if (i < j)
 				min_mul[i][j] = 9999999;
             else
@@ -28,15 +26,20 @@ void matrix_chain_multiplication(int arr[], int n) {
 					min_mul[i][j] = q;
 				}
 			}
+			
 		}
 	}
 	
-	for(i = 1; i < m+1; i++) {
-		for(j = 1; j < m+1; j++) {
+	
+	for(i = 1; i < n; i++) {
+		for(j = 1; j < n; j++) {
 			printf("%2d ", min_mul[i][j]);
 		}
 		printf("\n");
+		
 	}
+	printf("Maximum multiplication possible: %d",min_mul[1][n-1]);
+	
 }
 
 int main(void) {
