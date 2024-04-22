@@ -35,5 +35,7 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM and DAA in
 2. Matrix chain multiplication.
 3. 0/1 Knapsack problem.
 4. Floyed warshell algo.
+5. Dijsktra algo.
+6. Bellman Ford algo.
 
   
