@@ -37,5 +37,9 @@ This repo consists of code done by me for the subject- DSA in 3rd SEM and DAA in
 4. Floyed warshell algo.
 5. Dijsktra algo.
 6. Bellman Ford algo.
+7. Fractional Knapsack.
+8. Graph Coloring.
+9. Eight Queen Problem.
+10. Job sequencing.
 
   
