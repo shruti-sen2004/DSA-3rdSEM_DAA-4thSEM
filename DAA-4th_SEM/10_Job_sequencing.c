@@ -1,67 +1,62 @@
-//Write a C program to implement Job sequencing with deadlines
-
 #include <stdio.h>
-#include <stdlib.h>
 
-struct Job {
-    char id;
-    int deadline;
-    int profit;
-};
-
-int compare(const void *a, const void *b) {
-    return ((struct Job *)b)->profit > ((struct Job *)a)->profit;
+void swap(int x, int y){
+    int temp = x;
+    x = y;
+    y = temp;
 }
 
-void jobSequencing(struct Job jobs[], int numJobs) {
-    qsort(jobs, numJobs, sizeof(jobs[0]), compare);
-
-    int maxDeadline = 0;
-    int i;
-    for (i = 0; i < numJobs; i++) {
-        if (jobs[i].deadline > maxDeadline)
-            maxDeadline = jobs[i].deadline;
+int jobsequencing(int n, int deadline[], int profit[], int job[]){
+    int i, j, k, max_profit = 0;
+    int slot[n];
+    for(i = 0; i < n; i++){
+        slot[i] = 0;
     }
-
-    char result[maxDeadline];
-    int slot[maxDeadline];
-    for (i = 0; i < maxDeadline; i++) {
-        slot[i] = -1;
+    for(i = 0; i < n; i++){                        //SORTING THE JOBS IN DESCENDING ORDER OF PROFIT
+        for(j = n-1; j > i; j--){
+            if(profit[j] > profit[j-1]){
+                swap(profit[j], profit[j-1]);
+                swap(deadline[j], deadline[j-1]);
+                swap(job[j], job[j-1]);
+            }
+        }
     }
-
-    for (i = 0; i < numJobs; i++) {
-        for (int j = jobs[i].deadline - 1; j >= 0; j--) {
-            if (slot[j] == -1) {
-                slot[j] = i;
-                result[j] = jobs[i].id;
+    for(i = 0; i < n; i++){                          //FINDING THE SLOT FOR THE JOB
+        for(j = deadline[i]-1; j >= 0; j--){
+            if(slot[j] == 0){
+                slot[j] = job[i];
+                max_profit += profit[i];
                 break;
             }
         }
     }
-
-    printf("The sequence of jobs is: ");
-    for (i = 0; i < maxDeadline; i++) {
-        if (slot[i] != -1)
-            printf("%c ", result[i]);
+    printf("JOB SEQUENCE: ");
+    for(i = 0; i < n; i++){
+        if(slot[i] != 0){
+            printf("%d ",slot[i]);
+        }
     }
+    printf("\n");
+    return max_profit;
 }
 
-int main() {
-    int numJobs;
-    int i;
-
-    printf("Enter the number of jobs: ");
-    scanf("%d", &numJobs);
-
-    struct Job jobs[numJobs];
-
-    for (i = 0; i < numJobs; i++) {
-        printf("Enter the id, deadline and profit of job %d: ", i + 1);
-        scanf(" %c %d %d", &jobs[i].id, &jobs[i].deadline, &jobs[i].profit);
+int main(){
+    int n;
+    printf("ENTER THE NUMBER OF JOBS: ");
+    scanf("%d",&n);
+    int deadline[n], profit[n], job[n];
+    printf("ENTER THE DEADLINES OF THE JOBS: ");
+    for(int i = 0; i < n; i++){
+        scanf("%d",&deadline[i]);
     }
-
-    jobSequencing(jobs, numJobs);
-
+    printf("ENTER THE PROFIT OF THE JOBS: ");
+    for(int i = 0; i < n; i++){
+        scanf("%d",&profit[i]);
+    }
+    for(int i = 0; i < n; i++){
+        job[i] = i+1;
+    }
+    int result = jobsequencing(n,deadline,profit,job);
+    printf("MAXIMUM PROFIT: %d",result);
     return 0;
 }
-
