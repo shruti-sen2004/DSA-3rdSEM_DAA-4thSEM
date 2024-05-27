@@ -1,54 +1,38 @@
 #include<stdio.h>
-int max, min;
-int a[100];
-void maxmin(int i, int j)
-{
- int max1, min1, mid;
- if(i==j)
- {
-  max = min = a[i];
- }
- else
- {
-  if(i == j-1)
-  {
-   if(a[i] <a[j])
-   {
-    max = a[j];
-    min = a[i];
-   }
-   else
-   {
-    max = a[i];
-    min = a[j];
-   }
-  }
-  else
-  {
-   mid = (i+j)/2;
-   maxmin(i, mid);
-   max1 = max; min1 = min;
-   maxmin(mid+1, j);
-   if(max <max1)
-    max = max1;
-   if(min > min1)
-    min = min1;
-  }
- }
-}
-int main ()
-{
- int i, num;
- printf ("\nEnter the total number of numbers : ");
- scanf ("%d",&num);
- printf ("Enter the numbers : \n");
- for (i=1;i<=num;i++)
-  scanf ("%d",&a[i]);
 
- max = a[0];
- min = a[0];
- maxmin(1, num);
- printf ("Minimum element in an array : %d\n", min);
- printf ("Maximum element in an array : %d\n", max);
- return 0;
+int max, min;
+int arr[100];
+void max_min(int i, int j){
+    int max1, min1, mid;
+    if (i==j){
+        max1=min1=arr[i];
+    }
+    else{
+        if(i==j-1){
+            (arr[i]>arr[j])?(max=arr[i],min=arr[j]):(max=arr[j],min=arr[i]);
+        }
+        else{
+            mid= i+j/2;
+            max_min(i,mid);
+            max1=max;
+            min1=min;
+            max_min(mid+1,j);
+            (max<max1)?max=max1:(min=min1);
+        }
+    }
+}
+
+int main(){
+    int n;
+    printf("ENTER THE SIZE OF THE ARRAY: ");
+    scanf("%d",&n);
+    printf("ENTER THE ELEMENTS OF THE ARRAY: ");
+    for(int i=0; i<n; i++){
+        scanf("%d",&arr[i]);
+    }
+    max=arr[0];
+    min=arr[0];
+    max_min(0,n-1);
+    printf("MAXIMUM ELEMENT: %d\n",max);
+    printf("MINIMUM ELEMENT: %d\n",min);
 }
