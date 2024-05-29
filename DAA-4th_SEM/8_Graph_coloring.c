@@ -1,72 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define MAX_VERTICES 10
+#define MAX 10
 
-int graph[MAX_VERTICES][MAX_VERTICES];
-int color[MAX_VERTICES];
-int num_vertices;
+int G[MAX][MAX], color[MAX], n;
 
-void inputGraph() {
-    printf("Enter the number of vertices: ");
-    scanf("%d", &num_vertices);
-    int i;
+void nextValue(int k){
     int j;
-
-    printf("Enter the adjacency matrix:\n");
-    for (i = 0; i < num_vertices; i++) {
-        for (j = 0; j < num_vertices; j++) {
-            scanf("%d", &graph[i][j]);
+    while(1){
+        color[k] = (color[k] + 1) % (n+1);
+        if(color[k] == 0)
+            return;
+        for(j = 0; j < n; j++){
+            if(G[k][j] != 0 && color[k] == color[j])
+                break;
         }
+        if(j == n)
+            return;
     }
 }
 
-int isSafe(int v, int c) {
-	int i;
-    for (i = 0; i < num_vertices; i++) {
-        if (graph[v][i] && c == color[i])
-            return 0;
-    }
-    return 1;
-}
+int flag = 1;
 
-int graphColoringUtil(int v, int num_colors) {
-    if (v == num_vertices)
-        return 1;
-        int c;
+void graphColoring(int k){
+    int i;
+    while(flag){
+        nextValue(k);
         
-
-    for (c = 1; c <= num_colors; c++) {
-        if (isSafe(v, c)) {
-            color[v] = c;
-            if (graphColoringUtil(v + 1, num_colors))
-                return 1;
-            color[v] = 0;
+        if(color[k] == 0)
+            return;
+        if(k == n-1){
+            for(i = 0; i < n; i++){
+                printf("NODE %d: COLOR %d\n",i+1,color[i]);
+            }
+            printf("\n");
+            flag= 0;
         }
-    }
-    return 0;
-}
-
-void graphColoring(int num_colors) {
-    if (graphColoringUtil(0, num_colors)) {
-        printf("The coloring of vertices is:\n");
-        int i;
-        for (i = 0; i < num_vertices; i++) {
-            printf("Vertex %d -> Color %d\n", i + 1, color[i]);
+        else{
+            graphColoring(k+1);
         }
-    } else {
-        printf("Solution does not exist with %d colors.\n", num_colors);
     }
 }
 
-int main() {
-    int num_colors;
-    
-    inputGraph();
-    
-    printf("Enter the number of colors: ");
-    scanf("%d", &num_colors);
-    
-    graphColoring(num_colors);
-    
+int main(){
+    int i, j;
+    printf("ENTER THE NUMBER OF VERTICES: ");
+    scanf("%d",&n);
+    printf("\nENTER THE ADJACENCY MATRIX:\n");
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            scanf("%d",&G[i][j]);
+        }
+    }
+    for(i = 0; i < n; i++){
+        color[i] = 0;
+    }
+    printf("\nDesired graph coloring\n");graphColoring(0);
     return 0;
 }
