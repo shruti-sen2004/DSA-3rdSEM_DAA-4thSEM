@@ -1,9 +1,73 @@
-//Write a C program to implement 8 Queen Problem.
+//METHOD1` : GIVES ALL POSSIBLE SOLUTIONS
+
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// int board[20], count;
+
+// int main(){
+//     int n;
+//     printf("ENTER THE NUMBER OF QUEENS: ");
+//     scanf("%d",&n);
+//     nqueen(1,n);
+//     return 0;
+// }
+
+// int place(int row, int column){
+//     int i;
+//     for(i = 1; i <= row-1; i++){
+//         if(board[i] == column){
+//             return 0;
+//         }
+//         else{
+//             if(abs(board[i] - column) == abs(i - row)){
+//                 return 0;
+//             }
+//         }
+//     }
+//     return 1;
+// }
+
+// void nqueen(int row, int n){
+//     int column;
+//     for(column = 1; column <= n; column++){
+//         if(place(row,column)){
+//             board[row] = column;
+//             if(row == n){
+//                 printf(n);
+//             }
+//             else{
+//                 nqueen(row+1,n);
+//             }
+//         }
+//     }
+// }
+
+// void print(int n){
+//     int i, j;
+//     printf("\n\nSOLUTION %d:\n\n",++count);
+//     for(i = 1; i <= n; i++){
+//         printf("\t%d",i);
+//     }
+//     for(i = 1; i <= n; i++){
+//         printf("\n\n%d",i);
+//         for(j = 1; j <= n; j++){
+//             if(board[i] == j){
+//                 printf("\tQ");
+//             }
+//             else{
+//                 printf("\t-");
+//             }
+//         }
+//     }
+// }
+
+//METHOD 2 : GIVES ONLY ONE OPTIMAL SOLUTION
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 8
+#define N 4
 
 int board[N][N];
 
