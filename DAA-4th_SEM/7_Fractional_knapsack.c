@@ -1,63 +1,61 @@
+//fractinal knapsack
+
 #include <stdio.h>
+#include <stdlib.h>
 
-
-struct Item {
-    int weight;
-    int value;
-};
-
-
-int compare(const void *a, const void *b) {
-    double ratio1 = (double)(((struct Item *)b)->value) / ((struct Item *)b)->weight;
-    double ratio2 = (double)(((struct Item *)a)->value) / ((struct Item *)a)->weight;
-    return ratio1 > ratio2 ? 1 : -1;
+void swap(float *x, float *y){
+    float temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
+void fractional_knapsack(int n, int weight[], int profit[], int capacity){
+    float ratio[n];
+    for(int i = 0; i < n; i++){
+        ratio[i] = (float)profit[i]/weight[i];
+    }
 
-void fractionalKnapsack(int knapsackCapacity, struct Item items[], int numItems) {
-   
-    qsort(items, numItems, sizeof(items[0]), compare);
-
-    int currentWeight = 0; 
-    double totalValue = 0.0;
-	int i; 
-
-    
-    for (i = 0; i < numItems; i++) {
-        
-        if (currentWeight + items[i].weight <= knapsackCapacity) {
-            currentWeight += items[i].weight;
-            totalValue += items[i].value;
-        } else {
-            
-            int remainingCapacity = knapsackCapacity - currentWeight;
-            totalValue += ((double)remainingCapacity / items[i].weight) * items[i].value;
+    for(int i = 0; i < n; i++){                        //SORTING THE ITEMS IN DESCENDING ORDER OF PROFIT/WEIGHT
+        for(int j = n-1; j > i; j--){
+            if(ratio[j] > ratio[j-1]){
+                swap(&ratio[j], &ratio[j-1]);
+                swap(&weight[j], &weight[j-1]);
+                swap(&profit[j], &profit[j-1]);
+            }
+        }
+    }
+    int current_weight = 0;
+    float final_profit = 0.0;
+    for(int i = 0; i < n; i++){
+        if(current_weight + weight[i] <= capacity){    //IF THE ITEM CAN BE ADDED COMPLETELY
+            current_weight += weight[i];
+            final_profit += profit[i];
+        }
+        else{
+            int remaining = capacity - current_weight;  //IF THE ITEM CANNOT BE ADDED COMPLETELY
+            final_profit += profit[i] * ((float)remaining/weight[i]);
             break;
         }
     }
-
-    printf("Maximum value that can be obtained: %.2lf\n", totalValue);
+    printf("MAXIMUM PROFIT: %.2f\n",final_profit);
 }
 
-int main() {
-    int numItems, knapsackCapacity;
-    int i;
-
-    printf("Enter the number of items: ");
-    scanf("%d", &numItems);
-
-    struct Item items[numItems];
-
-   
-    for (i = 0; i < numItems; i++) {
-        printf("Enter weight and value of item %d: ", i + 1);
-        scanf("%d %d", &items[i].weight, &items[i].value);
+int main(){
+    int n;
+    printf("ENTER THE NUMBER OF ITEMS: ");
+    scanf("%d",&n);
+    int weight[n], profit[n];
+    printf("ENTER THE WEIGHT OF THE ITEMS: ");
+    for(int i = 0; i < n; i++){
+        scanf("%d",&weight[i]);
     }
-
-    printf("Enter the knapsack capacity: ");
-    scanf("%d", &knapsackCapacity);
-
-    fractionalKnapsack(knapsackCapacity, items, numItems);
-
+    printf("ENTER THE PROFIT OF THE ITEMS: ");
+    for(int i = 0; i < n; i++){
+        scanf("%d",&profit[i]);
+    }
+    int capacity;
+    printf("ENTER THE CAPACITY OF THE KNAPSACK: ");
+    scanf("%d",&capacity);
+    fractional_knapsack(n,weight,profit,capacity);
     return 0;
 }
