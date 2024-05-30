@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-void swap(int x, int y){
-    int temp = x;
-    x = y;
-    y = temp;
+void swap(int *x, int *y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 int jobsequencing(int n, int deadline[], int profit[], int job[]){
@@ -15,9 +15,9 @@ int jobsequencing(int n, int deadline[], int profit[], int job[]){
     for(i = 0; i < n; i++){                        //SORTING THE JOBS IN DESCENDING ORDER OF PROFIT
         for(j = n-1; j > i; j--){
             if(profit[j] > profit[j-1]){
-                swap(profit[j], profit[j-1]);
-                swap(deadline[j], deadline[j-1]);
-                swap(job[j], job[j-1]);
+                swap(&profit[j], &profit[j-1]);
+                swap(&deadline[j], &deadline[j-1]);
+                swap(&job[j], &job[j-1]);
             }
         }
     }
